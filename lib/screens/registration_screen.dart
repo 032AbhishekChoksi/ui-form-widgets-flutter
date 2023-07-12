@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({super.key});
@@ -8,10 +9,13 @@ class RegistrationScreen extends StatefulWidget {
 }
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
+  TextEditingController dobController = TextEditingController();
+
   String selectedGender = 'Male';
   bool isChecked = false;
   List<String> listCity = <String>['Bardoli', 'Surat', 'Ahmedabad', 'Vadodara'];
   String selectedCity = 'Bardoli';
+  var selectedDOB;
 
   @override
   Widget build(BuildContext context) {
@@ -110,6 +114,36 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       });
                     }),
                 const SizedBox(height: 10),
+                TextField(
+                  controller: dobController,
+                  readOnly: true,
+                  showCursor: true,
+                  onTap: () async {
+                    DateTime? datePicker = await showDatePicker(
+                        context: context,
+                        initialDate: DateTime.now(),
+                        firstDate: DateTime(2018),
+                        lastDate: DateTime.now());
+
+                    if(datePicker!=null){
+                      selectedDOB = DateFormat("dd-MM-yyy").format(datePicker);
+                      dobController.text = selectedDOB;
+                    }
+                  },
+                  decoration: InputDecoration(
+                  labelText: 'DOB',
+                  hintText: 'DOB',
+                  suffixIcon: const Icon(Icons.calendar_month),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                    borderSide: const BorderSide(color: Colors.red),
+                  ),
+                ),
+                ),
+                 const SizedBox(height: 10),
                 CheckboxListTile(
                     title: const Text(
                       'Terms and Condition Accept',
