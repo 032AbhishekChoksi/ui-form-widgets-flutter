@@ -24,6 +24,39 @@ class LoginScreen extends StatelessWidget {
                   size: 50,
                 ),
               ),
+              const SizedBox(height: 10),
+              TextField(
+                keyboardType: TextInputType.phone,
+                maxLength: 10,
+                decoration: InputDecoration(
+                  labelText: 'Enter Contact No',
+                  hintText: 'Contact No',
+                  prefixIcon: const Icon(Icons.person_pin),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                    borderSide: const BorderSide(color: Colors.red),
+                  ),
+                ),
+              ),
+              TextField(
+                obscureText: true,
+                obscuringCharacter: '*',
+                decoration: InputDecoration(
+                  labelText: 'Enter Password',
+                  hintText: 'Password',
+                  prefixIcon: const Icon(Icons.password_outlined),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                    borderSide: const BorderSide(color: Colors.red),
+                  ),
+                ),
+              ),
             ],
           ),
         ),
