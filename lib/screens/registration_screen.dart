@@ -9,6 +9,7 @@ class RegistrationScreen extends StatefulWidget {
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
   String selectedGender = 'Male';
+  bool isChecked = false;
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +69,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 ),
                 const SizedBox(height: 10),
                 RadioListTile(
-                  title: const Text('Male'),
+                  title: const Text(
+                    'Male',
+                    style: TextStyle(fontSize: 18),
+                  ),
                   value: 'Male',
                   groupValue: selectedGender,
                   onChanged: (newValue) {
@@ -78,7 +82,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   },
                 ),
                 RadioListTile(
-                  title: const Text('Female'),
+                  title: const Text(
+                    'Female',
+                    style: TextStyle(fontSize: 18),
+                  ),
                   value: 'Female',
                   groupValue: selectedGender,
                   onChanged: (newValue) {
@@ -87,6 +94,18 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     });
                   },
                 ),
+                const SizedBox(height: 10),
+                CheckboxListTile(
+                    title: const Text(
+                      'Terms and Condition Accept',
+                      style: TextStyle(fontSize: 18),
+                    ),
+                    value: isChecked,
+                    onChanged: (newValue) {
+                      setState(() {
+                        isChecked = newValue!;
+                      });
+                    })
               ],
             ),
           ),
