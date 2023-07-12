@@ -10,6 +10,8 @@ class RegistrationScreen extends StatefulWidget {
 class _RegistrationScreenState extends State<RegistrationScreen> {
   String selectedGender = 'Male';
   bool isChecked = false;
+  List<String> listCity = <String>['Bardoli', 'Surat', 'Ahmedabad', 'Vadodara'];
+  String selectedCity = 'Bardoli';
 
   @override
   Widget build(BuildContext context) {
@@ -94,6 +96,19 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     });
                   },
                 ),
+                const SizedBox(height: 10),
+                DropdownButton(
+                    value: selectedCity,
+                    icon: const Icon(Icons.arrow_downward_sharp),
+                    items:
+                        listCity.map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem(value: value, child: Text(value));
+                    }).toList(),
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        selectedCity = newValue!;
+                      });
+                    }),
                 const SizedBox(height: 10),
                 CheckboxListTile(
                     title: const Text(
