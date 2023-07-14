@@ -10,12 +10,14 @@ class RegistrationScreen extends StatefulWidget {
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
   TextEditingController dobController = TextEditingController();
+  TextEditingController joiningTimeController = TextEditingController();
 
   String selectedGender = 'Male';
   bool isChecked = false;
   List<String> listCity = <String>['Bardoli', 'Surat', 'Ahmedabad', 'Vadodara'];
   String selectedCity = 'Bardoli';
   var selectedDOB;
+  var selectedJoiningTime;
 
   @override
   Widget build(BuildContext context) {
@@ -125,36 +127,68 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         firstDate: DateTime(2018),
                         lastDate: DateTime.now());
 
-                    if(datePicker!=null){
+                    if (datePicker != null) {
                       selectedDOB = DateFormat("dd-MM-yyy").format(datePicker);
                       dobController.text = selectedDOB;
                     }
                   },
                   decoration: InputDecoration(
-                  labelText: 'DOB',
-                  hintText: 'DOB',
-                  suffixIcon: const Icon(Icons.calendar_month),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20),
-                    borderSide: const BorderSide(color: Colors.red),
-                  ),
-                ),
-                ),
-                 const SizedBox(height: 10),
-                CheckboxListTile(
-                    title: const Text(
-                      'Terms and Condition Accept',
-                      style: TextStyle(fontSize: 18),
+                    labelText: 'DOB',
+                    hintText: 'DOB',
+                    suffixIcon: const Icon(Icons.calendar_month),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20),
                     ),
-                    value: isChecked,
-                    onChanged: (newValue) {
-                      setState(() {
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20),
+                      borderSide: const BorderSide(color: Colors.red),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 20),
+                TextField(
+                  controller: joiningTimeController,
+                  readOnly: true,
+                  showCursor: true,
+                  onTap: () async {
+                    TimeOfDay? timePicker = await showTimePicker(
+                        context: context,
+                        initialTime: TimeOfDay.now(),
+                        initialEntryMode: TimePickerEntryMode.dial);
+                    final now = DateTime.now();
+                    final time = DateTime(now.year, now.month, now.day,
+                        timePicker!.hour, timePicker.minute);
+                    selectedJoiningTime = DateFormat("HH:mm").format(time);
+                    joiningTimeController.text = selectedJoiningTime;
+                  },
+                  decoration: InputDecoration(
+                    labelText: 'Joining Time',
+                    hintText: 'Joining Time',
+                    suffixIcon: const Icon(Icons.timer_outlined),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20),
+                      borderSide: const BorderSide(color: Colors.red),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 10),
+                CheckboxListTile(
+                  title: const Text(
+                    'Terms and Condition Accept',
+                    style: TextStyle(fontSize: 18),
+                  ),
+                  value: isChecked,
+                  onChanged: (newValue) {
+                    setState(
+                      () {
                         isChecked = newValue!;
-                      });
-                    })
+                      },
+                    );
+                  },
+                ),
               ],
             ),
           ),
