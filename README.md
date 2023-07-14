@@ -1,6 +1,6 @@
 # form_ui_widgets_flutter
 
-TextField, CircleAvatar, RadioListTile, CheckboxListTile, DropdownButton, showDatePicker, showTimePicker, Shared Preferences
+TextField, CircleAvatar, RadioListTile, CheckboxListTile, DropdownButton, showDatePicker, showTimePicker
 
 ## Getting Started
 

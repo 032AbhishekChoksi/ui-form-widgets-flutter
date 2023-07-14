@@ -5,7 +5,7 @@
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "TextField, CircleAvatar, RadioListTile, CheckboxListTile, DropdownButton, showDatePicker, showTimePicker, Shared Preferences",
+    "description": "TextField, CircleAvatar, RadioListTile, CheckboxListTile, DropdownButton, showDatePicker, showTimePicker",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
